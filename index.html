@@ -11,12 +11,18 @@
             background: white;
             color: black;
             font-family: monospace;
-            white-space: pre-wrap;
+            white-space: pre;
         }
         
         main {
-            width: min(48ch, 100%);
+            width: 48ch;
             margin: 0 auto;
+        }
+        
+        @media (max-width: 600px) {
+            main {
+                zoom: 0.8;
+            }
         }
     </style>
 </head>

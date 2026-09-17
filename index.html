@@ -21,13 +21,13 @@
     </style>
 </head>
 <body>
-<main id="resibo">Loading...</main>
+<main id="receipt">Loading...</main>
 
 <script>
 fetch("resibo.txt")
     .then(response => response.text())
     .then(text => {
-        document.getElementById("resibo").textContent = text;
+        document.getElementById("receipt").textContent = text;
     });
 </script>
 </body>

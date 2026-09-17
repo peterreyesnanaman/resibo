@@ -11,30 +11,40 @@
             background: white;
             color: black;
             font-family: monospace;
-            white-space: pre;
         }
-        
-        main {
+
+        #receipt {
             width: 48ch;
             margin: 0 auto;
-        }
-        
-        @media (max-width: 600px) {
-            main {
-                zoom: 0.8;
-            }
+            white-space: pre;
+            transform-origin: top center;
         }
     </style>
 </head>
-<body>
-<main id="receipt">Loading...</main>
 
-<script>
-fetch("resibo.txt")
-    .then(response => response.text())
-    .then(text => {
-        document.getElementById("receipt").textContent = text;
-    });
-</script>
+<body>
+    <main id="receipt">Loading...</main>
+
+    <script>
+        fetch("resibo.txt")
+            .then(response => response.text())
+            .then(text => {
+                const receipt = document.getElementById("receipt");
+                receipt.textContent = text;
+                fitReceipt();
+            });
+
+        function fitReceipt() {
+            const receipt = document.getElementById("receipt");
+            const available = document.body.clientWidth - 32;
+            const width = receipt.scrollWidth;
+
+            const scale = Math.min(1, available / width);
+
+            receipt.style.transform = `scale(${scale})`;
+        }
+
+        window.addEventListener("resize", fitReceipt);
+    </script>
 </body>
 </html>
